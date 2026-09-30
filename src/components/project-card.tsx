@@ -1,5 +1,6 @@
-import { ArrowUpRight, ChevronDown } from "@/components/icons";
+import { ArrowUpRight } from "@/components/icons";
 import { ProjectCarousel } from "@/components/project-carousel";
+import { ProjectDetailDialog } from "@/components/project-detail-dialog";
 import type { Project } from "@/types/portfolio";
 
 export function ProjectCard({ project, priority = false }: { project: Project; priority?: boolean }) {
@@ -22,34 +23,7 @@ export function ProjectCard({ project, priority = false }: { project: Project; p
           ))}
         </ul>
 
-        <details className="project-details">
-          <summary>
-            기술적 기여 자세히 보기
-            <ChevronDown />
-          </summary>
-          <div className="detail-content">
-            <div>
-              <h4>Problem</h4>
-              <p>{project.problem}</p>
-            </div>
-            <div>
-              <h4>What I did</h4>
-              <ul>
-                {project.contributions.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4>Result</h4>
-              <ul>
-                {project.results.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </details>
+        <ProjectDetailDialog project={project} />
 
         <div className="project-footer">
           <ul className="tag-list" aria-label="사용 기술">

@@ -15,7 +15,9 @@ export type Project = {
   eyebrow: string;
   title: string;
   period: string;
+  role: string;
   summary: string;
+  overview: string[];
   media: Media[];
   metrics: string[];
   problem: string;
@@ -30,7 +32,10 @@ export type Experience = {
   role: string;
   period: string;
   summary: string;
-  highlights: string[];
+  details: {
+    title: string;
+    description: string;
+  }[];
   stack?: string[];
 };
 
@@ -38,6 +43,11 @@ export type Activity = {
   title: string;
   period: string;
   description: string;
+  details?: {
+    period: string;
+    title: string;
+    description: string[];
+  }[];
 };
 
 export type ArchiveProject = {

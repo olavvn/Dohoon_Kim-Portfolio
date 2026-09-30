@@ -11,12 +11,6 @@ import {
   skills,
 } from "@/content/portfolio";
 
-const expertise = [
-  { icon: SparkIcon, title: "AI Engineering", copy: "LLM · RAG · Agent" },
-  { icon: DataIcon, title: "Data & Cloud", copy: "Pipeline · AWS · IaC" },
-  { icon: CodeIcon, title: "Product Systems", copy: "Web · Deployment · Ops" },
-];
-
 export default function Home() {
   return (
     <>
@@ -24,48 +18,56 @@ export default function Home() {
       <main id="top">
         <section className="hero container" aria-labelledby="hero-title">
           <div className="hero-kicker">
-            <span className="status-dot" aria-hidden="true" />
-            새로운 기회를 찾고 있습니다
+            CLOUD ENGINEER · DATA INFRASTRUCTURE
           </div>
           <h1 id="hero-title">
-            복잡한 데이터를
-            <br />
-            <span>작동하는 시스템</span>으로.
+            클라우드 인프라와<br />
+            <span>데이터 파이프라인을 구축합니다.</span>
           </h1>
           <p className="hero-copy">{profile.introduction}</p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#projects">
+            <a className="button button-download" href="#projects">
               프로젝트 살펴보기
               <ArrowUpRight />
             </a>
-            <a className="button button-secondary" href={`mailto:${profile.email}`}>
-              이메일 보내기
+            <a className="button button-tertiary" href={`mailto:${profile.email}`}>
+              이메일 보내기 <ArrowUpRight />
             </a>
           </div>
 
-          <div className="expertise-pill" aria-label="전문 영역">
-            {expertise.map(({ icon: Icon, title, copy }) => (
-              <a href="#skills" key={title}>
-                <span className="expertise-icon"><Icon /></span>
-                <span>
-                  <strong>{title}</strong>
-                  <small>{copy}</small>
-                </span>
-              </a>
-            ))}
-            <a className="search-orb" href="#projects" aria-label="프로젝트로 이동">
-              <ArrowUpRight />
-            </a>
+          <div className="profile-summary-card" aria-label="김도훈의 주요 이력과 정보">
+            <div className="profile-summary-intro">
+              <p className="section-label">Profile</p>
+              <h2>{profile.name}</h2>
+              <p>{profile.role}</p>
+            </div>
+            <dl className="profile-summary-list">
+              <div>
+                <dt>Education</dt>
+                <dd>{profile.education[0]}<span>{profile.education[1]}</span></dd>
+              </div>
+              <div>
+                <dt>Experience</dt>
+                <dd>(주)에프알티로보틱스 · Data Engineer Intern<span>KIC 실리콘밸리 · Program Operations Intern</span></dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>Cloud Infrastructure · Observability<span>Data Pipeline · Deployment Automation</span></dd>
+              </div>
+              <div>
+                <dt>Contact</dt>
+                <dd><a href={`mailto:${profile.email}`}>{profile.email}</a><span><a href={profile.github} target="_blank" rel="noreferrer">GitHub</a> · <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></span></dd>
+              </div>
+            </dl>
           </div>
-        </section>
+        </section >
 
         <section className="section container" id="projects" aria-labelledby="projects-title">
           <div className="section-heading">
             <div>
               <p className="section-label">Selected work</p>
-              <h2 id="projects-title">문제와 운영을 함께 본 프로젝트</h2>
+              <h2 id="projects-title">PROJECTS</h2>
             </div>
-            <p>기술을 나열하기보다 어떤 제약을 만났고, 무엇을 판단했으며, 결과가 어떻게 달라졌는지 담았습니다.</p>
           </div>
           <div className="project-grid">
             {projects.map((project, index) => (
@@ -78,8 +80,8 @@ export default function Home() {
           <div className="container">
             <div className="section-heading compact">
               <div>
-                <p className="section-label">Experience</p>
-                <h2 id="experience-title">현장에서 만든 변화</h2>
+                <p className="section-label">Career</p>
+                <h2 id="experience-title">EXPERIENCE</h2>
               </div>
             </div>
             <div className="experience-list">
@@ -92,10 +94,21 @@ export default function Home() {
                     <time>{experience.period}</time>
                   </div>
                   <div className="experience-content">
-                    <p className="experience-summary">{experience.summary}</p>
-                    <ul>
-                      {experience.highlights.map((item) => <li key={item}>{item}</li>)}
-                    </ul>
+                    <div className="experience-summary-block">
+                      <p className="experience-content-label">한 일 요약</p>
+                      <p className="experience-summary">{experience.summary}</p>
+                    </div>
+                    <div className="experience-detail-block">
+                      <p className="experience-content-label">상세 내용</p>
+                      <ol className="experience-detail-list">
+                        {experience.details.map((item, detailIndex) => (
+                          <li key={item.title}>
+                            <span>{String(detailIndex + 1).padStart(2, "0")}</span>
+                            <div><strong>{item.title}</strong><p>{item.description}</p></div>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
                     {experience.stack && (
                       <ul className="tag-list">
                         {experience.stack.map((item) => <li key={item}>{item}</li>)}
@@ -112,7 +125,7 @@ export default function Home() {
           <div className="section-heading">
             <div>
               <p className="section-label">Skills & credentials</p>
-              <h2 id="skills-title">직접 사용해 온 도구들</h2>
+              <h2 id="skills-title">SKILLS</h2>
             </div>
             <p>프로젝트와 업무에서 문제를 해결하기 위해 실제로 선택하고 사용한 기술입니다.</p>
           </div>
@@ -164,9 +177,9 @@ export default function Home() {
         <section className="section container" id="about" aria-labelledby="about-title">
           <div className="about-grid">
             <div className="about-intro">
-              <p className="section-label">Beyond the code</p>
-              <h2 id="about-title">기술과 사람 사이의 맥락을 탐구합니다.</h2>
-              <p>생성형 AI를 공부하고 나누는 일, 흑백 필름을 직접 현상하고 인화하는 일 모두 보이지 않는 과정을 이해하고 더 나은 경험으로 만드는 연습이라고 생각합니다.</p>
+              <p className="section-label">Activities</p>
+              <h2 id="about-title">EXTRA CURRICULAR</h2>
+              <p>생성형 AI 학회와 개발 커뮤니티에서 스터디와 교육 세션을 운영했으며, 중앙사진동아리에서는 전시 참여와 암실 관리를 담당했습니다.</p>
             </div>
             <div className="activity-list">
               {activities.map((activity) => (
@@ -174,6 +187,20 @@ export default function Home() {
                   <time>{activity.period}</time>
                   <h3>{activity.title}</h3>
                   <p>{activity.description}</p>
+                  {activity.details && (
+                    <details className="activity-details">
+                      <summary>더보기 <span aria-hidden="true">＋</span></summary>
+                      <div className="activity-detail-content">
+                        {activity.details.map((detail) => (
+                          <section key={`${detail.period}-${detail.title}`}>
+                            <time>{detail.period}</time>
+                            <h4>{detail.title}</h4>
+                            <ul>{detail.description.map((item) => <li key={item}>{item}</li>)}</ul>
+                          </section>
+                        ))}
+                      </div>
+                    </details>
+                  )}
                 </article>
               ))}
             </div>
@@ -211,13 +238,13 @@ export default function Home() {
         <section className="contact-section" aria-labelledby="contact-title">
           <div className="container contact-inner">
             <span className="contact-icon"><MailIcon /></span>
-            <p className="section-label">Let’s build something useful</p>
-            <h2 id="contact-title">운영되는 AI를 함께 만들고 싶습니다.</h2>
-            <p>AI · 데이터 · 클라우드가 만나는 문제를 이야기해 주세요.</p>
+            <p className="section-label">Contact</p>
+            <h2 id="contact-title">클라우드 및 데이터 인프라 직무를 지원하고 있습니다.</h2>
+            <p>프로젝트와 경력에 관한 문의는 이메일로 연락해 주세요.</p>
             <a className="button button-primary" href={`mailto:${profile.email}`}>{profile.email}<ArrowUpRight /></a>
           </div>
         </section>
-      </main>
+      </main >
 
       <footer className="site-footer">
         <div className="container footer-grid">

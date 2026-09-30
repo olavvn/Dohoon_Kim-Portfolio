@@ -27,7 +27,7 @@ export function Header() {
 
         <a className="contact-pill" href={`mailto:${profile.email}`}>
           <MailIcon />
-          <span>함께 일하기</span>
+          <span>Contact</span>
         </a>
 
         <details className="mobile-menu">
